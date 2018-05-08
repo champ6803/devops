@@ -1,17 +1,18 @@
 pipeline{
+    agent any
     stages {
         stage("Prepare"){
-            steps{
+            steps {
                 echo "Hello World"
             }
         }
         stage("check version"){
-            steps{
+            steps {
                 sh "docker --version"
             }
         }
         stage("build image"){
-            steps{
+            steps {
                 sh "docker build -t hello-nginx ."
             }
         }
