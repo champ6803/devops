@@ -1,4 +1,4 @@
-nodw {
+node {
     stage("Prepare"){
         echo "Hello World"
     }
