@@ -14,6 +14,13 @@ pipeline{
                 sh "docker --version"
             }
         }
+        stage("deploy"){
+            steps {
+                sshagent(['uat-server']){
+                    sh "echo 'xxxx'"
+                }
+            }
+        }
         stage("build image"){
             steps {
                 sh "docker build -t ${env.imageName}:1.${env.BUILD_NUMBER} ."
