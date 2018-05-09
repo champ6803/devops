@@ -20,10 +20,16 @@ pipeline{
                 sh "docker tag ${env.imageName}:1.${env.BUILD_NUMBER} hello-nginx"
             }
         }
-        stage("push") {
+        stage("push image") {
             steps {
-                sh "docker login -u champ6803 -p Sxrxq2DC"
-                sh "docker push ${env.imageName}"
+                script {
+                    docker.withRegistry(
+                        'https://registry.hub.docker.com', 'docker-id'
+                    ) {
+                        def image = docker.build("${env.imageName}:1.${env.BUILD_NUMBER}")
+                        image.push()
+                    }
+                }
             }
         }
     }
