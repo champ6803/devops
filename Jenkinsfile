@@ -16,7 +16,7 @@ pipeline{
         }
         stage("build image"){
             steps {
-                sh "docker build -t ${env.imageName} ."
+                sh "docker build -t ${env.imageName}:1.${env.BUILD_NUMBER} ."
                 sh "docker tag ${env.imageName}:1.${env.BUILD_NUMBER} hello-nginx"
             }
         }
